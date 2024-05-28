@@ -30,11 +30,24 @@
 {% endblock breadcrumbs %}
 
 {% block content %}
+<style>
+    .card-body{
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .deystviya i{
+        font-size: 20px;
+        margin-left: 30px;
+    }
+</style>
+
 <div class="row">
     <div class="col-xl-12">
         <div class="card">
             <div class="card-body">
                 <h4 class="box-title">Список продуктов </h4>
+                <a href="{% url 'mahsulotlar_xlsx_download' %}" class="btn btn-primary">Скачать XLSX</a>
             </div>
             <div class="card-body--">
                 <div class="table-stats order-table ov-h">
@@ -47,6 +60,7 @@
                                 <th>Цена</th>
                                 <th>Единица количества</th>
                                 <th>Дата</th>
+                                <th>Действия</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -59,6 +73,10 @@
                                 <td>{{ mahsulotlar.narxi }} UZS</td>
                                 <td>{{ mahsulotlar.ulchov_birligi }}</td>
                                 <td>{{ mahsulotlar.created_date }}</td>
+                                <td class="deystviya">
+                                    <a href="{% url 'mahsulotlar_edit' mahsulotlar.id %}"><i class="fa fa-edit"></i></a>
+                                    <a href="{% url 'mahsulotlar_delete' mahsulotlar.id %}"><i class="fa fa-trash"></i></a>
+                                </td>
                             </tr>
                             {% endfor %}
                             {% else %}

@@ -1,6 +1,7 @@
 {% extends 'base/base.html' %}
 
-{% block title %}Create Product{% endblock title %}
+{% block title %}Create Supplier{% endblock title %}
+
 {% block breadcrumbs %}
 <div class="breadcrumbs">
     <div class="breadcrumbs-inner">
@@ -17,8 +18,8 @@
                     <div class="page-title">
                         <ol class="breadcrumb text-right">
                             <li><a href="#">Склад</a></li>
-                            <li><a href="#">Товары</a></li>
-                            <li class="active">Создать</li>
+                            <li><a href="#">Поставшик</a></li>
+                            <li class="active">Изменить</li>
                         </ol>
                     </div>
                 </div>
@@ -33,41 +34,38 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
-                <strong class="card-title">Создать продукт</strong>
+                <strong class="card-title">Изменить Поставшик</strong>
             </div>
             <div class="card-body">
                 <!-- Credit Card -->
                 <div id="pay-invoice">
                     <div class="card-body">
-                        <form action="#" method="post" novalidate="novalidate" id="product-form">
+                        <form action="#" method="post" novalidate="novalidate">
                             {% csrf_token %}
                             <div class="form-group">
-                                <label for="nomi" class="control-label mb-1">Название</label>
-                                {{ form.nomi }}
-                            </div>
-                            <div class="form-group" id="id_tur">
-                                <label for="tur" class="control-label mb-1">Цена</label>
-                                {{ form.narxi }}
+                                <label for="ism" class="control-label mb-1">Ф.И.О</label>
+                                {{ form.FISH }}
                             </div>
                             <div class="form-group">
-                                <label for="kategoriya" class="control-label mb-1">Категория</label>
-                                {{ form.kategoriya }}
+                                <label for="telefon" class="control-label mb-1">ИНН</label>
+                                {{ form.INN }}
                             </div>
                             <div class="form-group">
-                                <label for="miqdor_birligi" class="control-label mb-1">Единица измерения</label>
-                                {{ form.ulchov_birligi }}
+                                <label for="address" class="control-label mb-1">Адрес</label>
+                                {{ form.address }}
                             </div>
-                            
                             <div>
-                                <button id="create-product-button" type="submit" class="btn btn-lg btn-info btn-block">
-                                    <span id="payment-button-amount">Создать продукт</span>
+                                <button id="payment-button" type="submit" class="btn btn-lg btn-info btn-block">
+                                    <span id="payment-button-amount">Сохранить</span>
                                 </button>
                             </div>
                         </form>
                     </div>
                 </div>
+
             </div>
         </div> <!-- .card -->
+
     </div><!--/.col-->
 </div>
 {% endblock content %}

@@ -30,11 +30,19 @@
 {% endblock breadcrumbs %}
 
 {% block content %}
+<style>
+    .card-body{
+        display: flex;
+        justify-content: space-between;
+    }
+</style>
 <div class="row">
     <div class="col-xl-12">
         <div class="card">
             <div class="card-body">
                 <h4 class="box-title">Список расходов</h4>
+                <a href="{% url 'chiqimlar_xlsx_download' %}" class="btn btn-primary">Скачать XLSX</a>
+
             </div>
             <div class="card-body--">
                 <div class="table-stats order-table ov-h">

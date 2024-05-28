@@ -18,7 +18,7 @@
                     <div class="page-title">
                         <ol class="breadcrumb text-right">
                             <li><a href="#">Склад</a></li>
-                            <li><a href="#">Поступление</a></li>
+                            <li><a href="#">Приходы</a></li>
                             <li class="active">Список</li>
                         </ol>
                     </div>
@@ -30,11 +30,20 @@
 {% endblock breadcrumbs %}
 
 {% block content %}
+<style>
+    .card-body{
+        display: flex;
+        justify-content: space-between;
+    }
+</style>
+
 <div class="row">
     <div class="col-xl-12">
         <div class="card">
             <div class="card-body">
-                <h4 class="box-title">Список Поступлений </h4>
+                <h4 class="box-title">Список Приходы </h4>
+            <a href="{% url 'kirimlar_csv_download' %}" class="btn btn-primary">Скачать XLSX</a>
+
             </div>
             <div class="card-body--">
                 <div class="table-stats istoriyalar-table ov-h">
@@ -62,10 +71,11 @@
                             </tr>
                             {% endfor %}
                             {% else %}
-                                <tr><td>Нет данных поступлений</td></tr>
+                                <tr><td>Нет данных приходов</td></tr>
                             {% endif %}
                         </tbody>
                     </table>
+                    
                 </div> <!-- /.table-stats -->
             </div>
         </div> <!-- /.card -->

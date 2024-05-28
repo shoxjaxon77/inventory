@@ -1,6 +1,6 @@
 {% extends 'base/base.html' %}
 
-{% block title %}Создать Поступление{% endblock title %}
+{% block title %}Создать Приходы{% endblock title %}
 
 {% block breadcrumbs %}
 <div class="breadcrumbs">
@@ -18,7 +18,7 @@
                     <div class="page-title">
                         <ol class="breadcrumb text-right">
                             <li><a href="#">Склад</a></li>
-                            <li><a href="#">Поступление</a></li>
+                            <li><a href="#">Приходы</a></li>
                             <li class="active">Создать</li>
                         </ol>
                     </div>
@@ -59,13 +59,13 @@
                                 {{ form.keltirilgan_sana }}
                             </div>
                             <div class="form-group">
-                                <label for="buyer" class="control-label mb-1"> Цена одного</label>
+                                <label for="buyer" class="control-label mb-1">Цена за 1 кг, шт., литр и т.д.</label>
                                 {{ form.narx }}
                             </div>
                 
                             <div>
                                 <button id="payment-button" type="submit" class="btn btn-lg btn-info btn-block">
-                                    <span id="payment-button-amount">Создать Поступление</span>
+                                    <span id="payment-button-amount">Создать Приход</span>
                                 </button>
                             </div>
                         </form>
