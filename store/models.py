@@ -46,7 +46,7 @@ class Chiqimlar(models.Model):
     ism = models.CharField(max_length=120)
     familiya = models.CharField(max_length=120)
     telefon = models.CharField(max_length=50)
-    sotilgan_sana = models.DateField()
+    sotilgan_sana = models.DateField(default=datetime.date.today)
     created_date = models.DateField(auto_now_add=True)
 
     def __str__(self):
