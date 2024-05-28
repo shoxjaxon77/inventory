@@ -154,7 +154,7 @@ class ChiqimlarXLSXDownloadView(View):
         for idx, chiqim in enumerate(chiqimlar, start=1):
             sheet.append([
                 idx,
-                chiqim.mahsulot,
+                str(chiqim.mahsulot),
                 chiqim.miqdori,
                 chiqim.ism,
                 chiqim.familiya,
