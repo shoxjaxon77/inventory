@@ -44,13 +44,14 @@ def create_chiqim(request):
             chiqim_obj = Chiqimlar.objects.filter(mahsulot__nomi=mah_chiqim).first()
             mahsulot = Mahsulotlar.objects.filter(nomi=mah_chiqim).first()
 
-            mah_ombor = Omborxona.objects.filter(mahsulot__nomi=mah_chiqim).first()
-            narx = chiqim_obj.miqdori * mahsulot.narxi
-
-            if mah_ombor:
-                mah_ombor.umumiy_soni -= chiqim_obj.miqdori
-                mah_ombor.umumiy_narx -= narx
-                mah_ombor.save()
+            if chiqim_obj and mahsulot:  
+                mah_ombor = Omborxona.objects.filter(mahsulot__nomi=mah_chiqim).first()
+                if mah_ombor:
+                    mah_ombor.umumiy_soni -= chiqim.miqdori 
+                    narx = chiqim.miqdori * mahsulot.narxi 
+                    mah_ombor.umumiy_narx -= narx
+                    mah_ombor.save()
+            
             return redirect('chiqim-list')
     
     context = {
