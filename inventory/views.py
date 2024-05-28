@@ -7,13 +7,14 @@ from store.models import Mahsulotlar, Yetkazib_beruvchilar, Chiqimlar, Omborxona
 def dashboard(request):
    
     mal=Omborxona.objects.all()
-
+    total_quantity = Omborxona.objects.aggregate(total_quantity=Sum('umumiy_soni'))['total_quantity']
     kirim = Kirimlar.objects.count()
     chiqim = Chiqimlar.objects.count()
     y_b = Yetkazib_beruvchilar.objects.count()
     # for i in mal:
     #     print(i)
     context = {
+        'total':total_quantity,
         'mahsulot': mal,
         'kirim': kirim,
         'chiqim': chiqim,
