@@ -1,0 +1,101 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Create Product{% endblock title %}
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+    <div class="breadcrumbs-inner">
+        <div class="row m-0">
+            <div class="col-sm-4">
+                <div class="page-header float-left">
+                    <div class="page-title">
+                        <h1>Склад</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="page-header float-right">
+                    <div class="page-title">
+                        <ol class="breadcrumb text-right">
+                            <li><a href="#">Склад</a></li>
+                            <li><a href="#">Товары</a></li>
+                            <li class="active">Создать</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock breadcrumbs %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <strong class="card-title">Создать продукт</strong>
+            </div>
+            <div class="card-body">
+                <!-- Credit Card -->
+                <div id="pay-invoice">
+                    <div class="card-body">
+                        <form action="#" method="post" novalidate="novalidate" id="product-form">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="nomi" class="control-label mb-1">Название</label>
+                                {{ form.nomi }}
+                            </div>
+                            <div class="form-group" id="id_tur">
+                                <label for="tur" class="control-label mb-1">Цена</label>
+                                {{ form.narxi }}
+                            </div>
+                            <div class="form-group">
+                                <label for="kategoriya" class="control-label mb-1">Категория</label>
+                                {{ form.kategoriya }}
+                            </div>
+                            <div class="form-group">
+                                <label for="miqdor_birligi" class="control-label mb-1">Единица измерения</label>
+                                {{ form.ulchov_birligi }}
+                            </div>
+                            
+                            <div>
+                                <button id="create-product-button" type="submit" class="btn btn-lg btn-info btn-block">
+                                    <span id="payment-button-amount">Создать продукт</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- .card -->
+    </div><!--/.col-->
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    var turField = document.querySelector('id_tur'); // Formdagi tur maydoni
+    var kontragentField = document.querySelector('kontragent-field'); // Kontagent maydoni div
+    var mijozField = document.querySelector('mijoz-field'); // Mijoz maydoni div
+
+    turField.addEventListener('change', function() {
+        if (turField.value === 'Продать') {
+            kontragentField.style.display = 'none'; // Kontagent maydonini yashirish
+            mijozField.style.display = 'block'; // Mijoz maydonini ko'rsatish
+        } else if (turField.value === 'Получить') {
+            kontragentField.style.display = 'block'; // Kontagent maydonini ko'rsatish
+            mijozField.style.display = 'none'; // Mijoz maydonini yashirish
+        } else {
+            kontragentField.style.display = 'block'; // Kontagent maydonini ko'rsatish
+            mijozField.style.display = 'block'; // Mijoz maydonini ko'rsatish
+        }
+    });
+
+    // Saqlash tugmachasiga bosganda ham amalga oshiring
+    var saveButton = document.querySelector('#create-product-button');
+    saveButton.addEventListener('click', function(event) {
+        event.preventDefault(); // Boshqa amallarni to'xtatish
+        // Yozuvni yoki ma'lumotlarni saqlash funktsiyasini chaqirish
+        // Masalan: saveFormData();
+    });
+});
+</script>
+{% endblock content %}

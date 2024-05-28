@@ -1,0 +1,78 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Buyer List{% endblock title %}
+
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+    <div class="breadcrumbs-inner">
+        <div class="row m-0">
+            <div class="col-sm-4">
+                <div class="page-header float-left">
+                    <div class="page-title">
+                        <h1>Склад</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="page-header float-right">
+                    <div class="page-title">
+                        <ol class="breadcrumb text-right">
+                            <li><a href="#">Склад</a></li>
+                            <li><a href="#">Расходы</a></li>
+                            <li class="active">Список Расходов</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock breadcrumbs %}
+
+{% block content %}
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="box-title">Список расходов</h4>
+            </div>
+            <div class="card-body--">
+                <div class="table-stats order-table ov-h">
+                    <table class="table ">
+                        <thead>
+                            <tr>
+                                <th class="serial">#</th>
+                                <th>Название продукта</th>
+                                <th>Количество</th>
+                                <th>Имя</th>
+                                <th>Фамилия</th>
+                                <th>Номер телефона</th>
+                                <th>Дата продажи</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if chiqimlar %}
+                            {% for chiqimlar in chiqimlar %}
+                            <tr>
+                                <td class="serial">{{ forloop.counter }}</td>
+                                <td>{{ chiqimlar.mahsulot }}</td>
+                                <td>{{ chiqimlar.miqdori }}</td>
+                                <td>{{ chiqimlar.ism }}</td>
+                                <td>{{ chiqimlar.familiya }}</td>
+                                <td>{{ chiqimlar.telefon }}</td>
+                                <td>{{ chiqimlar.sotilgan_sana }}</td>
+                            </tr>
+                            {% endfor %}
+                            {% else %}
+                                <tr><td>Нет данных о покупателе</td></tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div> <!-- /.table-stats -->
+            </div>
+        </div> <!-- /.card -->
+    </div>  <!-- /.col-lg-8 -->
+
+    
+</div>
+{% endblock content %}

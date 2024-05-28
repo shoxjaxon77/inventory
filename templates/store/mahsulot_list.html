@@ -1,0 +1,76 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Product List{% endblock title %}
+
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+    <div class="breadcrumbs-inner">
+        <div class="row m-0">
+            <div class="col-sm-4">
+                <div class="page-header float-left">
+                    <div class="page-title">
+                        <h1>Склад</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="page-header float-right">
+                    <div class="page-title">
+                        <ol class="breadcrumb text-right">
+                            <li><a href="#">Склад</a></li>
+                            <li><a href="#">Продукты</a></li>
+                            <li class="active">Список</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock breadcrumbs %}
+
+{% block content %}
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="box-title">Список продуктов </h4>
+            </div>
+            <div class="card-body--">
+                <div class="table-stats order-table ov-h">
+                    <table class="table ">
+                        <thead>
+                            <tr>
+                                <th class="serial">#</th>
+                                <th>Название</th>
+                                <th>Категория</th>
+                                <th>Цена</th>
+                                <th>Единица количества</th>
+                                <th>Дата</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if mahsulotlar %}
+                            {% for mahsulotlar in mahsulotlar %}
+                            <tr>
+                                <td class="serial">{{ forloop.counter }}</td>
+                                <td>{{ mahsulotlar.nomi }}</td>
+                                <td>{{ mahsulotlar.kategoriya }}</td>
+                                <td>{{ mahsulotlar.narxi }} UZS</td>
+                                <td>{{ mahsulotlar.ulchov_birligi }}</td>
+                                <td>{{ mahsulotlar.created_date }}</td>
+                            </tr>
+                            {% endfor %}
+                            {% else %}
+                                <tr><td>Нет данных о продукте</td></tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div> <!-- /.table-stats -->
+            </div>
+        </div> <!-- /.card -->
+    </div>  <!-- /.col-lg-8 -->
+
+    
+</div>
+{% endblock content %}

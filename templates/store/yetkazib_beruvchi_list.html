@@ -1,0 +1,74 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Supplier List{% endblock title %}
+
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+    <div class="breadcrumbs-inner">
+        <div class="row m-0">
+            <div class="col-sm-4">
+                <div class="page-header float-left">
+                    <div class="page-title">
+                        <h1>Склад</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="page-header float-right">
+                    <div class="page-title">
+                        <ol class="breadcrumb text-right">
+                            <li><a href="#">Мой склад</a></li>
+                            <li><a href="#">Контрагент</a></li>
+                            <li class="active">Список</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock breadcrumbs %}
+
+{% block content %}
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="box-title"> Список Контрагентов </h4>
+            </div>
+            <div class="card-body--">
+                <div class="table-stats order-table ov-h">
+                    <table class="table ">
+                        <thead>
+                            <tr>
+                                <th class="serial">#</th>
+                                <th>Ф.И.О</th>
+                                <th>ИНН</th>
+                                <th>Адрес</th>
+                                <th>Дата</th>                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if yetkazib_beruvchilar %}
+                            {% for yetkazib_beruvchilar in yetkazib_beruvchilar %}
+                            <tr>
+                                <td class="serial">{{ forloop.counter }}</td>
+                                <td>{{ yetkazib_beruvchilar.FISH }}</td>
+                                <td>{{ yetkazib_beruvchilar.INN }}</td>
+                                <td>{{ yetkazib_beruvchilar.address }}</td>
+                                <td>{{ yetkazib_beruvchilar.created_date }}</td>
+                            </tr>
+                            {% endfor %}
+                            {% else %}
+                                <tr><td>Нет данных о контрагентах</td></tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div> <!-- /.table-stats -->
+            </div>
+        </div> <!-- /.card -->
+    </div>  <!-- /.col-lg-8 -->
+
+    
+</div>
+{% endblock content %}

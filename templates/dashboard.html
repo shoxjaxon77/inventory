@@ -1,0 +1,124 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Склад{% endblock title %}
+
+{% block content %}
+    <!-- Widgets  -->
+    <div class="row">
+        <div class="col-lg-3 col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="stat-widget-five">
+                        <div class="stat-icon dib flat-color-1">
+                            <i class="fa fa-cart-plus"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="text-left dib">
+                                <div class="stat-text"><span class="count">{{ Istoriya }}</span></div>
+                                <div class="stat-heading">Склад</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="stat-widget-five">
+                        <div class="stat-icon dib flat-color-2">
+                            <i class="fa fa-download"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="text-left dib">
+                                <div class="stat-text"><span class="count">{{ kirim }}</span></div>
+                                <div class="stat-heading">Доходы</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="stat-widget-five">
+                        <div class="stat-icon dib flat-color-3">
+                            <i class="fa fa-upload"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="text-left dib">
+                                <div class="stat-text"><span class="count">{{ chiqim }}</span></div>
+                                <div class="stat-heading">Расходы</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="stat-widget-five">
+                        <div class="stat-icon dib flat-color-4">
+                            <i class="fa fa-user"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="text-left dib">
+                                <div class="stat-text"><span class="count">{{ yetkazib_beruvchilar }}</span></div>
+                                <div class="stat-heading">Поставшики</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Widgets -->
+    
+    <div class="clearfix"></div>
+
+    <!-- Orders -->
+    <div class="orders">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="box-title"> Склад </h4>
+                    </div>
+                    <div class="card-body--">
+                        <div class="table-stats order-table ov-h">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th class="serial">#</th>
+                                        <th>Название продукта</th>
+                                        <th>Общее Количество</th>
+                                        <th>Общая Сумма</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                     {% for i in mahsulot %}
+                                        <tr>
+                                            <td class="serial">{{forloop.counter}}</td>
+                                            <td>{{ i.mahsulot }}</td>
+                                            <td>{{ i.umumiy_soni }}</td>
+                                            <td>{{ i.umumiy_narx }}</td>
+                                        </tr>
+                                        {% endfor %}
+                                </tbody>
+                            </table>
+                            
+                        </div> <!-- /.table-stats -->
+                    </div>
+                </div> <!-- /.card -->
+            </div>  <!-- /.col-lg-8 -->
+
+            
+        </div>
+    </div>
+    <!-- /.orders -->
+{% endblock content %}
