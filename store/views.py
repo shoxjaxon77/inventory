@@ -74,9 +74,9 @@ def create_chiqim(request):
 
 
 class ChiqimListView(ListView):
-    model = Chiqimlar
-    template_name = 'store/chiqim_list.html'
-    context_object_name = 'chiqimlar'
+   def get(self,request):
+       chiqim = Chiqimlar.objects.all()
+       return render(request,'store/chiqim_list.html',{'chiqimlar':chiqim})
 
 # Mahsulotlar views
 @login_required(login_url='login')

@@ -1,3 +1,4 @@
+import datetime
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
@@ -36,7 +37,7 @@ class Mahsulotlar(models.Model):
     created_date = models.DateField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.nomi} - {self.ulchov_birligi}"
+        return self.nomi
 
 
 class Chiqimlar(models.Model):
@@ -59,7 +60,7 @@ class Kirimlar(models.Model):
     yetkazib_beruvchi = models.ForeignKey(Yetkazib_beruvchilar, on_delete=models.CASCADE)
     mahsulot = models.ForeignKey(Mahsulotlar, on_delete=models.CASCADE) 
     soni = models.IntegerField()
-    keltirilgan_sana = models.DateField()
+    keltirilgan_sana = models.DateField(default=datetime.date.today)
     narx = models.DecimalField(max_digits=15, decimal_places=2)
     
     def __str__(self):
