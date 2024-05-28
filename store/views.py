@@ -41,30 +41,16 @@ def create_chiqim(request):
             chiqim.save()
 
             mah_chiqim = form.cleaned_data['mahsulot']
-            try:
-                mahsulot = Mahsulotlar.objects.get(nomi=mah_chiqim)
-            except Mahsulotlar.DoesNotExist:
-                # mahsulot topilmasa, xatolik qaytaramiz
-                form.add_error('mahsulot', 'Mahsulot topilmadi')
-                context = {'form': form}
-                return render(request, 'store/create_chiqim.html', context)
-
-            try:
-                chiqim = Chiqimlar.objects.get(mahsulot__nomi=mah_chiqim)
-            except Chiqimlar.DoesNotExist:
-                # chiqim topilmasa, xatolik qaytaramiz
-                form.add_error('mahsulot', 'Chiqim topilmadi')
-                context = {'form': form}
-                return render(request, 'store/create_chiqim.html', context)
+            chiqim_obj = Chiqimlar.objects.filter(mahsulot__nomi=mah_chiqim).first()
+            mahsulot = Mahsulotlar.objects.filter(nomi=mah_chiqim).first()
 
             mah_ombor = Omborxona.objects.filter(mahsulot__nomi=mah_chiqim).first()
-            narx = chiqim.miqdori * mahsulot.narxi
+            narx = chiqim_obj.miqdori * mahsulot.narxi
 
             if mah_ombor:
-                mah_ombor.umumiy_soni -= chiqim.miqdori
+                mah_ombor.umumiy_soni -= chiqim_obj.miqdori
                 mah_ombor.umumiy_narx -= narx
                 mah_ombor.save()
-
             return redirect('chiqim-list')
     
     context = {
@@ -75,7 +61,7 @@ def create_chiqim(request):
 
 class ChiqimListView(ListView):
    def get(self,request):
-       chiqim = Chiqimlar.objects.all()
+       chiqim = Chiqimlar.objects.all().order_by('-id')
        return render(request,'store/chiqim_list.html',{'chiqimlar':chiqim})
 
 # Mahsulotlar views
@@ -118,7 +104,7 @@ def create_kirim(request):
             mak=Mahsulotlar.objects.get(nomi=mah_ombor)
             if mahsulot:
                 mahsulot[0].umumiy_soni+=b.soni
-                mahsulot[0].umumiy_narx+=(b.narx)*b.soni+(b.narx)*b.soni
+                mahsulot[0].umumiy_narx+=(b.narx)*b.soni
                 mahsulot[0].save()
             else:
                 Omborxona.objects.create(
