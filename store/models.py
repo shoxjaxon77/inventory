@@ -37,8 +37,7 @@ class Mahsulotlar(models.Model):
     created_date = models.DateField(auto_now_add=True)
 
     def __str__(self):
-        return self.nomi
-
+        return f"{self.nomi} - {self.ulchov_birligi}"
 
 class Chiqimlar(models.Model):
     mahsulot = models.ForeignKey(Mahsulotlar,on_delete=models.CASCADE)

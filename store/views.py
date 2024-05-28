@@ -40,7 +40,8 @@ def create_chiqim(request):
             chiqim.user = request.user
             chiqim.save()
 
-            mah_chiqim = form.cleaned_data['mahsulot']
+            mah_v= str(form.cleaned_data['mahsulot'])
+            mah_chiqim = mah_v.split(' ', 1)[0]
             chiqim_obj = Chiqimlar.objects.filter(mahsulot__nomi=mah_chiqim).first()
             mahsulot = Mahsulotlar.objects.filter(nomi=mah_chiqim).first()
 
@@ -98,7 +99,8 @@ def create_kirim(request):
             kirim = form.save(commit=False)
             kirim.user = request.user
             kirim.save()
-            mah_ombor= form.cleaned_data['mahsulot']
+            mah_v= str(form.cleaned_data['mahsulot'])
+            mah_ombor = mah_v.split(' ', 1)[0]
             kirim_mah=Kirimlar.objects.filter(mahsulot__nomi=mah_ombor)
             mahsulot=Omborxona.objects.filter(mahsulot__nomi=mah_ombor)
             b=[i for i in kirim_mah][-1]

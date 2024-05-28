@@ -11,8 +11,7 @@ def dashboard(request):
     kirim = Kirimlar.objects.count()
     chiqim = Chiqimlar.objects.count()
     y_b = Yetkazib_beruvchilar.objects.count()
-    # for i in mal:
-    #     print(i)
+
     context = {
         'total':total_quantity,
         'mahsulot': mal,

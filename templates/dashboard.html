@@ -97,6 +97,7 @@
                                         <th class="serial">#</th>
                                         <th>Название продукта</th>
                                         <th>Общее Количество</th>
+                                        <th>Единица измерения</th>
                                         <th>Общая Сумма</th>
                                     </tr>
                                 </thead>
@@ -104,8 +105,9 @@
                                      {% for i in mahsulot %}
                                         <tr>
                                             <td class="serial">{{forloop.counter}}</td>
-                                            <td>{{ i.mahsulot }}</td>
+                                            <td>{{ i.mahsulot.nomi }}</td>
                                             <td>{{ i.umumiy_soni }}</td>
+                                            <td>{{ i.mahsulot.ulchov_birligi }}</td>
                                             <td>{{ i.umumiy_narx }}</td>
                                         </tr>
                                         {% endfor %}
