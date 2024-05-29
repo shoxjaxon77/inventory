@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.http import HttpResponse,JsonResponse
 from django.shortcuts import get_object_or_404, render, redirect
 from django.urls import reverse
 from django.views import View
@@ -109,6 +109,15 @@ def create_chiqim(request):
         if form.is_valid():
             chiqim = form.save(commit=False)
             chiqim.user = request.user
+
+            mah_v= str(form.cleaned_data['mahsulot'])
+            mah_chiqim = mah_v.split(' ', 1)[0]
+            mah_ombor = Omborxona.objects.filter(mahsulot__nomi=mah_chiqim).first()
+            miqdor = form.cleaned_data['miqdori']
+            if miqdor>mah_ombor.umumiy_soni:
+                return JsonResponse({'error': 'Not enough stock', 'available_stock': mah_ombor.umumiy_soni,'birlik':mah_ombor.mahsulot.ulchov_birligi})
+
+
             chiqim.save()
 
             mah_v= str(form.cleaned_data['mahsulot'])
