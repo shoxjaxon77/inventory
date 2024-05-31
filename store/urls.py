@@ -3,7 +3,7 @@ from . import views
 
 urlpatterns = [
     path('yetkazib-beruvchi/create/', views.create_yetkazib_beruvchi, name='create-yetkazib-beruvchi'),
-    path('yetkazib-beruvchi/', views.YetkazibBeruvchiListView.as_view(), name='yetkazib-beruvchi-list'),
+    path('yetkazib-beruvchilar/', views.YetkazibBeruvchiListView.as_view(), name='yetkazib-beruvchi-list'),
     path('chiqimlar/create/', views.create_chiqim, name='create-chiqim'),
     path('chiqimlar/', views.ChiqimListView.as_view(), name='chiqim-list'),
     path('mahsulotlar/create/', views.create_mahsulot, name='create-mahsulot'),
